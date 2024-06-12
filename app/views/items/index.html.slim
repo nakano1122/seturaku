@@ -1,3 +1,59 @@
-h1 購入品一覧
+doctype html
+html
+  head
+    meta charset="utf-8"
+    title 購入品一覧
+    link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    style
+      | body {
+      |   background-color: #f7f9fc;
+      |   font-family: 'Arial', sans-serif;
+      | }
+      | .container {
+      |   margin-top: 50px;
+      |   max-width: 800px;
+      | }
+      | h1 {
+      |   font-size: 2.5em;
+      |   margin-bottom: 20px;
+      | }
+      | .btn-primary {
+      |   background-color: #007bff;
+      |   border: none;
+      |   padding: 10px 20px;
+      |   transition: background-color 0.3s ease;
+      | }
+      | .btn-primary:hover {
+      |   background-color: #0056b3;
+      | }
+      | table {
+      |   margin-top: 20px;
+      |   background-color: white;
+      |   border-radius: 8px;
+      |   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      | }
+      | th {
+      |   font-weight: bold;
+      | }
+      | td {
+      |   vertical-align: middle;
+      | }
+  body
+    .container
+      h1 購入品一覧
 
-= link_to '購入品を登録する', new_item_path, class: 'btn btn-primary'
+      = link_to '購入品を登録する', new_item_path, class: 'btn btn-primary'
+
+      .mb-3
+      table.table.table-hover
+        thead.thead-default
+          tr
+            th= Item.human_attribute_name(:item_name)
+            th= Item.human_attribute_name(:price)
+            th= Item.human_attribute_name(:bought_at)
+        tbody
+          - @items.each do |item|
+            tr
+              td= link_to item.item_name, item
+              td= item.price
+              td= item.bought_at

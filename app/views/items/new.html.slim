@@ -38,23 +38,6 @@ html
     .container
       h1 新規登録
 
-      p
-        = link_to '購入品一覧', items_path, class: 'nav-link'
-
-      = form_with model: @item, local: true do |f|
-        .form-group
-          = f.label :item_name
-          = f.text_field :item_name, class: 'form-control', id: 'item_name'
-        .form-group
-          = f.label :category
-          = f.select :category, [['レディース', 'レディース'], ['メンズ', 'メンズ']], {}, class: 'form-control'
-        .form-group
-          = f.label :description
-          = f.text_area :description, rows: 3, class: 'form-control', id: 'description'
-        .form-group
-          = f.label :price
-          = f.number_field :price, class: 'form-control', id: 'price'
-        .form-group
-          = f.label :bought_at
-          = f.date_field :bought_at, class: 'form-control', id: 'bought_at'
-        = f.submit '登録', class: 'btn btn-primary'
+      = link_to '購入品一覧', items_path, class: 'nav-link'
+      = render partial: 'form', locals: { item: @item }
+      
