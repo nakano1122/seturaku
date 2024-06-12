@@ -1,2 +1,65 @@
-h1 Items#show
-p Find me in app/views/items/show.html.slim
+doctype html
+html
+  head
+    meta charset="utf-8"
+    title 購入品詳細
+    link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    style
+      | body {
+      |   background-color: #f7f9fc;
+      |   font-family: 'Arial', sans-serif;
+      | }
+      | .container {
+      |   margin-top: 50px;
+      |   max-width: 800px;
+      | }
+      | .nav-link {
+      |   display: inline;
+      |   color: #007bff;
+      |   text-decoration: none;
+      | }
+      | .nav-link:hover {
+      |   text-decoration: underline;
+      | }
+      | h1 {
+      |   font-size: 2.5em;
+      |   margin-bottom: 20px;
+      | }
+      | table {
+      |   margin-top: 20px;
+      |   background-color: white;
+      |   border-radius: 8px;
+      |   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      | }
+      | th {
+      |   font-weight: bold;
+      | }
+      | td {
+      |   vertical-align: middle;
+      | }
+  body
+    .container
+      h1 購入品詳細
+
+      .nav.justify-content-end
+        = link_to '購入品一覧', items_path, class: 'nav-link'
+      
+      table.table.table-hover
+        tbody
+          tr
+            th= Item.human_attribute_name(:item_name)
+            td= @item.item_name
+          tr
+            th= Item.human_attribute_name(:category)
+            td= @item.category
+          tr
+            th= Item.human_attribute_name(:description)
+            td= simple_format(h(@item.description), {}, sanitize: false, wrapper_tag: "div")
+          tr
+            th= Item.human_attribute_name(:price)
+            td= @item.price
+          tr
+            th= Item.human_attribute_name(:bought_at)
+            td= @item.bought_at
+
+= link_to '編集', edit_item_path, class: 'btn btn-primary mr-3'
