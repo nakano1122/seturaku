@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
+  before_action :login_required, only: [:index, :edit, :update, :new, :create]
+
   def index
-    @items = Item.all
+    @items = current_user.items
   end
 
   def show
@@ -8,23 +10,30 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = current_user.items.new
   end
 
   def create
-    item = Item.new(item_params)
-    item.save!
-    redirect_to items_url, notice: "「#{item.item_name}」を登録しました。"
+    @item = current_user.items.new(item_params)
+    
+    if @item.save
+      redirect_to @item, notice: "「#{@item.item_name}」を登録しました。"
+    else
+      render :new
+    end
   end
 
   def edit
-    @task = Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update!(item_params)
-    redirect_to items_url, notice: "「#{item.item_name}」を更新しました。"
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to items_url, notice: "「#{@item.item_name}」を更新しました。"
+    else
+      render :edit
+    end
   end
 
   private

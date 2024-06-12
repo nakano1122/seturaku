@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    title 新規登録
+    link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    style
+      | body {
+      |   background-color: #f7f9fc;
+      |   font-family: 'Arial', sans-serif;
+      | }
+      | .container {
+      |   margin-top: 50px;
+      |   max-width: 600px;
+      | }
+      | h1 {
+      |   font-size: 2.5em;
+      |   margin-bottom: 20px;
+      | }
+      | .form-control {
+      |   margin-bottom: 15px;
+      | }
+      | .btn-primary {
+      |   background-color: #007bff;
+      |   border: none;
+      |   padding: 10px 20px;
+      |   transition: background-color 0.3s ease;
+      | }
+      | .btn-primary:hover {
+      |   background-color: #0056b3;
+      | }
+      | p {
+      |   margin-top: 20px;
+      | }
+      | a {
+      |   color: #007bff;
+      |   text-decoration: none;
+      | }
+      | a:hover {
+      |   text-decoration: underline;
+      | }
+  body
+    .container
+      h1 新規登録
+
+      .row
+        .col-md-6.col-md-offset-3
+          = form_for(@user) do |f|
+            = f.label :name
+            = f.text_field :name, class: 'form-control'
+
+            = f.label :email
+            = f.email_field :email, class: 'form-control'
+
+            = f.label :password
+            = f.password_field :password, class: 'form-control'
+
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, class: 'form-control'
+
+            = f.submit "登録", class: "btn btn-primary"
+
+          p
+            | すでにアカウントがある方はこちら
+            = link_to "ログイン", login_path

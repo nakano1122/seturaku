@@ -16,6 +16,11 @@ ja:
         category: カテゴリー
         price: 価格
         bought_at: 購入日
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
   date:
     abbr_day_names:
     - 日

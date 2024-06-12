@@ -46,3 +46,5 @@ gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
 
 gem 'mini_racer', platforms: :ruby
+
+gem 'bcrypt', '~> 3.1.7'
