@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :login_required
+
   def new
     @user = User.new
   end
@@ -8,10 +9,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash.now[:notice] = "ユーザ登録に成功しました。"
-      redirect_to @user
+      redirect_to items_path, notice: 'ユーザ登録に成功しました。'
     else
-      flash.now[:notice] = "ユーザ登録に失敗しました"
       render :new
     end
   end
