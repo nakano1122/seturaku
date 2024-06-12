@@ -4,10 +4,10 @@
     = f.text_field :item_name, class: 'form-control', id: 'item_name'
   .form-group
     = f.label :category
-    = f.select :category, [['レディース', 'レディース'], ['メンズ', 'メンズ']], {}, class: 'form-control'
+    = f.select :category, [['食費', '食費'],['生活用品', '生活用品'],['家賃', '家賃'],['光熱費', '光熱費'],['医療費', '医療費'],['趣味', '趣味'],['交際費', '交際費'],['サブスク', 'サブスク']], {}, class: 'form-control'
   .form-group
     = f.label :description
-    = f.text_area :description, rows: 3, class: 'form-control', id: 'description'
+    = f.text_area :description, rows: 2, class: 'form-control', id: 'description'
   .form-group
     = f.label :price
     = f.number_field :price, class: 'form-control', id: 'price'
